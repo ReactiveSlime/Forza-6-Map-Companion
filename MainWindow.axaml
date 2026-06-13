@@ -1,0 +1,353 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="980"
+        d:DesignHeight="700"
+        x:Class="Forza6Client.MainWindow"
+        Title="Forza 6 Map Companion"
+        Width="980"
+        Height="700"
+        MinWidth="600"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#07111f"
+        Foreground="#e2e8f0">
+  <Grid ColumnDefinitions="1.1*,0.9*" Margin="32" RenderOptions.BitmapInterpolationMode="HighQuality">
+    <!-- Left Column: Hero / Status -->
+    <Border Grid.Column="0"
+            Background="#0d1a2f"
+            BorderBrush="#94a3b8"
+            BorderThickness="1"
+            CornerRadius="24"
+            Padding="28"
+            Margin="0,0,10,0"
+            BoxShadow="0 24 80 0 #00000059">
+      <StackPanel Spacing="20">
+        <TextBlock Text="FORZA 6 MAP COMPANION V2.0.1"
+                   Foreground="#fbbf24"
+                   FontSize="11"
+                   FontWeight="800"
+                   LetterSpacing="1.5" />
+        <TextBlock Text="Forza 6 Map Companion"
+                   FontSize="36"
+                   FontWeight="700"
+                   LineHeight="38"
+                   MaxWidth="360"
+                   TextWrapping="Wrap" />
+
+        <Border Background="#02081759"
+                BorderBrush="#94a3b8"
+                BorderThickness="1"
+                CornerRadius="18"
+                Padding="18"
+                Margin="0,8,0,0">
+          <StackPanel Spacing="10">
+            <TextBlock Text="STATUS"
+                       Foreground="#94a3b8"
+                       FontSize="11"
+                       FontWeight="800"
+                       LetterSpacing="1" />
+            <Border x:Name="StatusBadge"
+                    CornerRadius="999"
+                    Padding="12,8"
+                    HorizontalAlignment="Left"
+                    Background="#94a3b81f">
+              <TextBlock x:Name="StatusText"
+                         Text="idle"
+                         Foreground="#cbd5e1"
+                         FontSize="11"
+                         FontWeight="800"
+                         LetterSpacing="1" />
+            </Border>
+          </StackPanel>
+        </Border>
+
+        <Border Background="#02081759"
+                BorderBrush="#94a3b8"
+                BorderThickness="1"
+                CornerRadius="18"
+                Padding="18">
+          <StackPanel Spacing="10">
+            <TextBlock Text="LOCAL ADDRESSES"
+                       Foreground="#94a3b8"
+                       FontSize="11"
+                       FontWeight="800"
+                       LetterSpacing="1" />
+            <ItemsControl x:Name="AddressList">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border CornerRadius="999"
+                          Padding="12,8"
+                          Background="#22c55e1f"
+                          BorderBrush="#22c55e38"
+                          BorderThickness="1"
+                          HorizontalAlignment="Left"
+                          Margin="0,0,0,6">
+                    <TextBlock Text="{Binding}"
+                               Foreground="#bbf7d0"
+                               FontWeight="700"
+                               FontSize="13" />
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </Border>
+
+    <!-- Right Column: Settings Form -->
+    <Border Grid.Column="1"
+            Background="#0d1a2f"
+            BorderBrush="#fbbf24"
+            BorderThickness="1"
+            CornerRadius="24"
+            Padding="24"
+            BoxShadow="0 24 80 0 #00000059">
+      <StackPanel Spacing="16">
+        <TextBlock Text="LOCAL SETUP"
+                   Foreground="#fbbf24"
+                   FontSize="11"
+                   FontWeight="800"
+                   LetterSpacing="1" />
+        <TextBlock Text="Set a username once, then point Forza Data Out at one of the addresses on the left."
+                   Foreground="#94a3b8"
+                   FontSize="13"
+                   TextWrapping="Wrap"
+                   LineHeight="18" />
+
+        <StackPanel Spacing="6">
+          <TextBlock Text="USERNAME"
+                     Foreground="#94a3b8"
+                     FontSize="11"
+                     FontWeight="800"
+                     LetterSpacing="1" />
+          <TextBox x:Name="UsernameInput"
+                   MaxLength="24"
+                   Watermark="Your name"
+                   Background="#02081780"
+                   BorderBrush="#94a3b838"
+                   BorderThickness="1"
+                   CornerRadius="16"
+                   Padding="14,12"
+                   FontSize="14"
+                   Foreground="#e2e8f0" />
+        </StackPanel>
+
+        <Grid ColumnDefinitions="*,*">
+          <StackPanel Grid.Column="0" Margin="0,0,6,0" Spacing="6">
+            <TextBlock Text="DATA IN HOST"
+                       Foreground="#94a3b8"
+                       FontSize="11"
+                       FontWeight="800"
+                       LetterSpacing="1" />
+            <TextBox x:Name="HostInput"
+                     Watermark="0.0.0.0"
+                     Background="#02081780"
+                     BorderBrush="#94a3b838"
+                     BorderThickness="1"
+                     CornerRadius="16"
+                     Padding="14,12"
+                     FontSize="14"
+                     Foreground="#e2e8f0" />
+          </StackPanel>
+          <StackPanel Grid.Column="1" Margin="6,0,0,0" Spacing="6">
+            <TextBlock Text="DATA IN PORT"
+                       Foreground="#94a3b8"
+                       FontSize="11"
+                       FontWeight="800"
+                       LetterSpacing="1" />
+            <TextBox x:Name="PortInput"
+                     Watermark="20440"
+                     Background="#02081780"
+                     BorderBrush="#94a3b838"
+                     BorderThickness="1"
+                     CornerRadius="16"
+                     Padding="14,12"
+                     FontSize="14"
+                     Foreground="#e2e8f0" />
+          </StackPanel>
+        </Grid>
+
+        <StackPanel Spacing="6">
+          <TextBlock Text="MARKER COLOR"
+                     Foreground="#94a3b8"
+                     FontSize="11"
+                     FontWeight="800"
+                     LetterSpacing="1" />
+          <Border Background="#02081780"
+                  BorderBrush="#94a3b838"
+                  BorderThickness="1"
+                  CornerRadius="16"
+                  Padding="14,8">
+            <Grid ColumnDefinitions="32,*">
+              <Border Grid.Column="0"
+                      x:Name="ColorSwatch"
+                      Width="24"
+                      Height="24"
+                      CornerRadius="6"
+                      BorderThickness="1"
+                      BorderBrush="#94a3b838"
+                      Cursor="Hand"
+                      PointerPressed="OpenColorPicker" />
+              <TextBlock Grid.Column="1"
+                         x:Name="ColorHex"
+                         Margin="8,0,0,0"
+                         VerticalAlignment="Center"
+                         FontSize="14"
+                         Foreground="#e2e8f0" />
+            </Grid>
+          </Border>
+              <Popup x:Name="ColorPopup"
+                     Placement="Bottom"
+                     HorizontalOffset="0"
+                     VerticalOffset="4">
+                <Border Background="#0d1a2f"
+                        CornerRadius="12"
+                        Padding="12"
+                        BorderThickness="1"
+                        BorderBrush="#94a3b838"
+                        Width="280">
+                  <StackPanel Spacing="8">
+                    <Grid>
+                      <TextBlock Text="PICK A COLOR"
+                                 Foreground="#94a3b8"
+                                 FontSize="11"
+                                 FontWeight="800"
+                                 LetterSpacing="1" />
+                      <Button x:Name="ColorPopupClose"
+                              Content="✕"
+                              Click="CloseColorPopup"
+                              Background="Transparent"
+                              Foreground="#94a3b8"
+                              BorderThickness="0"
+                              FontSize="13"
+                              Cursor="Hand"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Padding="4" />
+                    </Grid>
+
+                    <Border x:Name="SvContainer"
+                            Height="200"
+                            CornerRadius="6"
+                            BorderThickness="1"
+                            BorderBrush="#94a3b838"
+                            ClipToBounds="True"
+                            PointerPressed="OnSvPressed"
+                            PointerMoved="OnSvMoved"
+                            PointerReleased="OnSvReleased">
+                      <Grid>
+                        <Image x:Name="SvImage" Stretch="Fill" />
+                        <Ellipse x:Name="SvIndicator"
+                                 Width="12"
+                                 Height="12"
+                                 Stroke="White"
+                                 StrokeThickness="2"
+                                 Fill="Transparent"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Top"
+                                 IsVisible="False" />
+                      </Grid>
+                    </Border>
+
+                    <Border x:Name="HueContainer"
+                            Height="20"
+                            CornerRadius="6"
+                            BorderThickness="1"
+                            BorderBrush="#94a3b838"
+                            ClipToBounds="True"
+                            PointerPressed="OnHuePressed"
+                            PointerMoved="OnHueMoved"
+                            PointerReleased="OnHueReleased">
+                      <Border.Background>
+                        <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                          <GradientStop Color="#FF0000" Offset="0.00" />
+                          <GradientStop Color="#FFFF00" Offset="0.17" />
+                          <GradientStop Color="#00FF00" Offset="0.33" />
+                          <GradientStop Color="#00FFFF" Offset="0.50" />
+                          <GradientStop Color="#0000FF" Offset="0.67" />
+                          <GradientStop Color="#FF00FF" Offset="0.83" />
+                          <GradientStop Color="#FF0000" Offset="1.00" />
+                        </LinearGradientBrush>
+                      </Border.Background>
+                      <Grid>
+                        <Rectangle x:Name="HueIndicator"
+                                   Width="4"
+                                   Fill="White"
+                                   Stroke="#1e293b"
+                                   StrokeThickness="1"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Stretch"
+                                   IsVisible="False" />
+                      </Grid>
+                    </Border>
+
+                    <Border x:Name="PreviewSwatch"
+                            Height="28"
+                            CornerRadius="6"
+                            BorderThickness="1"
+                            BorderBrush="#94a3b838" />
+
+                    <TextBox x:Name="ColorHexInput"
+                             Watermark="#FF6B35"
+                             Background="#02081780"
+                             BorderBrush="#94a3b838"
+                             BorderThickness="1"
+                             CornerRadius="8"
+                             Padding="10,6"
+                             FontSize="13"
+                             Foreground="#e2e8f0" />
+                  </StackPanel>
+                </Border>
+              </Popup>
+        </StackPanel>
+
+        <TextBlock x:Name="SavedPathText"
+                   Foreground="#94a3b8"
+                   FontSize="12"
+                   TextWrapping="Wrap" />
+
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <Button x:Name="SaveButton"
+                  Content="Save settings"
+                  Click="SaveSettings"
+                  Background="#fbbf24"
+                  Foreground="#082032"
+                  FontWeight="700"
+                  FontSize="13"
+                  CornerRadius="999"
+                  Padding="16,10"
+                  BorderThickness="0"
+                  Cursor="Hand" />
+          <Button x:Name="RestartButton"
+                  Content="Restart bridge"
+                  Click="RestartBridge"
+                  Background="#02081773"
+                  Foreground="#e2e8f0"
+                  FontWeight="700"
+                  FontSize="13"
+                  CornerRadius="999"
+                  Padding="16,10"
+                  BorderBrush="#94a3b833"
+                  BorderThickness="1"
+                  Cursor="Hand" />
+          <Button x:Name="StopButton"
+                  Content="Stop bridge"
+                  Click="StopBridge"
+                  Background="Transparent"
+                  Foreground="#e2e8f0"
+                  FontWeight="700"
+                  FontSize="13"
+                  CornerRadius="999"
+                  Padding="16,10"
+                  BorderBrush="#94a3b833"
+                  BorderThickness="1"
+                  Cursor="Hand" />
+        </StackPanel>
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>
